@@ -1,0 +1,65 @@
+/* Self-hosted typography; no external font requests. */
+@font-face{font-family:'Kulim Park';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/KulimPark-Regular.ttf') format('truetype')}
+@font-face{font-family:'Kulim Park';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/KulimPark-SemiBold.ttf') format('truetype')}
+@font-face{font-family:'Kulim Park';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/KulimPark-Bold.ttf') format('truetype')}
+:root{--heading-font:'Kumbh Sans',Arial,sans-serif;--body-font:'Kulim Park',Arial,sans-serif;--serif:var(--heading-font)}
+body,.node-shell,.writer-shell,.tutorial-dialog,input,textarea,select,button{font-family:var(--body-font)}
+h1,h2,h3,.brand,.brand-mark,.writer-brand,.notebook-logo,.reality-label,.graph-node-heading strong,.tutorial-world strong,.tutorial-page strong{font-family:var(--heading-font);font-weight:400;letter-spacing:.025em}
+#landing .hero h1,#landing .closing h2{font-family:var(--heading-font);letter-spacing:.01em;line-height:1.2}
+#landing .hero h1{font-size:75px}
+.brand,.brand-mark,.writer-brand{font-family:var(--heading-font);font-weight:400;letter-spacing:.025em}
+.brand-note{font-family:var(--body-font)}
+.world-node-summary h2,.library-heading h1,.work-dialog h2,.tutorial-content h2{font-family:var(--heading-font);font-weight:400;letter-spacing:.025em}
+.document-paper #document-title{font-family:var(--heading-font);font-weight:400;letter-spacing:.025em}
+.document-paper #document-body,.document-paper #document-body h2,.document-paper #document-body h3{font-family:var(--body-font)}
+.tutorial-nav{padding:8px 0;background:none;border:0;color:inherit;font-size:inherit;line-height:inherit}
+.tutorial-nav:hover{color:#e3caff}
+.tutorial-nav:focus-visible{outline:2px solid #d5b7ff;outline-offset:5px}
+/* An edge-lit surface, like the reference: restrained fill and a purple rim. */
+.writer-sidebar{background-image:radial-gradient(ellipse at 90% 0%,#9d36ff12,transparent 55%);border-right-color:#9861c970;box-shadow:inset -1px 0 0 #d5b7ff16,8px 0 30px #9d36ff0a}
+.canvas-mode .writer-sidebar{border:1px solid #9861c970;box-shadow:0 0 0 1px #d5b7ff0a,0 0 24px #9d36ff15,0 16px 40px #0005}
+.graph-node,.library-entry,.tutorial-dialog,.work-dialog{background-image:radial-gradient(ellipse at 70% 0%,#9d36ff0f,transparent 65%);border-color:#9861c960;box-shadow:0 0 0 1px #d5b7ff08,0 0 22px #9d36ff12,0 10px 30px #0005}
+.graph-node:hover,.graph-node:focus-visible,.library-entry:hover{border-color:#b473ff;box-shadow:0 0 0 1px #d5b7ff20,0 0 30px #9d36ff30,0 10px 30px #0005}
+.graph-node.is-selected,.graph-node.connection-source{border-color:#d5b7ff;box-shadow:0 0 0 3px #9d36ff20,0 0 30px #9d36ff30}
+.writer-sidebar a:hover,.writer-sidebar button:hover{background-color:#9d36ff12}
+.writer-sidebar a:focus-visible,.writer-sidebar button:focus-visible{outline-color:#d5b7ff}
+@media(max-width:760px){#landing .hero h1{font-size:clamp(34px,7vw,56px);letter-spacing:0}.brand-note{display:none}.writer-sidebar{box-shadow:inset -1px 0 0 #d5b7ff20,10px 0 35px #0008}}
+@media(prefers-reduced-motion:reduce){.graph-node,.library-entry{transition:none}}
+
+.graph-toolbar h1,.sidebar-head h2,.capture-heading h1,.worlds-empty h1,.worlds-empty h2,.story-preview h2,.sample-worlds h2,.editor-world-heading h1,.writing-panel h2,.reference-panel h2{font-family:var(--heading-font);font-weight:400;letter-spacing:.025em}
+.capture-writing textarea,.story-preview .excerpt,.writing-panel textarea,.reference-panel textarea{font-family:var(--body-font)}
+.capture-writing,.capture-library,.capture-card{background-image:radial-gradient(ellipse at 70% 0%,#9d36ff0f,transparent 65%);border-color:#9861c960;box-shadow:0 0 22px #9d36ff12,0 10px 30px #0005}
+
+@font-face{font-family:'Kumbh Sans';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/KumbhSans-400.ttf') format('truetype')}
+@font-face{font-family:'Kumbh Sans';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/KumbhSans-500.ttf') format('truetype')}
+@font-face{font-family:'Kumbh Sans';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/KumbhSans-600.ttf') format('truetype')}
+@font-face{font-family:'Kumbh Sans';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/KumbhSans-700.ttf') format('truetype')}
+/* Restore the original compact wordmark rather than using the heading font. */
+.brand{font-family:Arial,Helvetica,sans-serif;font-weight:600;letter-spacing:-.8px}
+.brand-mark{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:0}
+.writer-brand{font-family:Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:0}
+#landing .hero .intro,#landing .hero-detail{font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.3}
+#landing .hero .intro{margin-bottom:0}
+#landing .hero-detail{margin-top:5px}
+/* Plain, evenly spaced navigation; only interaction adds purple emphasis. */
+.writer-header .writer-actions{gap:24px;flex-wrap:nowrap;margin-left:auto}
+.writer-header .writer-actions button,.writer-header .writer-actions a{border:0;background:none;box-shadow:none;border-radius:0;padding:8px 0;color:#d9d9d9;font-family:var(--body-font);font-size:14px;line-height:1.4;white-space:nowrap;min-height:34px}
+.writer-header .writer-actions .active{border:0;background:none;color:#d9d9d9}
+.writer-header .writer-actions button:not(:disabled):hover,.writer-header .writer-actions a:hover{background:none;color:#d5b7ff;text-shadow:0 0 12px #9d36ff,0 0 24px #9d36ff70;box-shadow:none}
+.writer-header .writer-actions button:focus-visible,.writer-header .writer-actions a:focus-visible{outline:2px solid #d5b7ff;outline-offset:5px;color:#d5b7ff}
+.writer-header .writer-actions .tutorial-help{width:22px;flex-shrink:0}
+.writer-header .reality-label{max-width:clamp(100px,20vw,280px);font-weight:500}
+/* Rotate the gradient's light, never the card or its content. Mask the centre. */
+@property --edge-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes orbit-edge{to{--edge-angle:360deg}}
+.library-entry,.capture-writing,.capture-library,.capture-card{position:relative}
+.writer-sidebar::before,.graph-node[data-node-kind='world']::before,.graph-node[data-node-kind='create-world']::before,.library-entry::before,.capture-writing::before,.capture-library::before,.capture-card::before,dialog::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:2;background:conic-gradient(from var(--edge-angle),transparent 0deg,transparent 200deg,#9d36ff30 245deg,#9d36ffb3 275deg,#ad83cf 292deg,#9d36ff70 310deg,transparent 340deg);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;animation:orbit-edge 24s linear infinite}
+dialog{position:fixed}
+@media(max-width:1100px){.writer-header .writer-actions{gap:16px}.writer-header .reality-label{max-width:150px}}
+@media(max-width:760px){.writer-header{padding:12px 16px 0;gap:12px}.writer-header .writer-actions{width:100%;max-width:100%;overflow-x:auto;gap:20px;justify-content:flex-start;scrollbar-width:thin;padding:0 2px 5px;margin:0}.writer-header .writer-actions button,.writer-header .writer-actions a{font-size:14px;flex-shrink:0}.writer-header .writer-actions .pause-compact{display:block}.writer-header .reality-label{max-width:calc(100vw - 85px)}#landing .hero .intro,#landing .hero-detail{line-height:1.35}}
+@media(min-width:761px) and (max-width:1100px){#landing .hero h1{font-size:clamp(54px,6.8vw,75px)}}
+@media(prefers-reduced-motion:reduce){.writer-sidebar::before,.graph-node::before,.library-entry::before,.capture-writing::before,.capture-library::before,.capture-card::before,dialog::before{animation:none}.writer-header .writer-actions button,.writer-header .writer-actions a{transition:none}}
+
+#landing .hero h1{line-height:1.04}
+.manuscript-paper>h1{font-family:var(--heading-font);font-size:36px;line-height:1.2;letter-spacing:0;color:#222;overflow-wrap:anywhere;margin-bottom:18px}
+.manuscript-section{margin-top:38px;scroll-margin-top:24px}.manuscript-section>h2{font:500 26px/1.3 var(--heading-font);letter-spacing:0;color:#222;border-bottom:1px solid #ddd;padding-bottom:12px}.manuscript-entry{margin:24px 0 36px;content-visibility:auto;contain-intrinsic-size:auto 180px;scroll-margin-top:24px}.manuscript-entry>h3{font:500 22px/1.3 var(--heading-font);letter-spacing:0;color:#222;margin-bottom:14px}.manuscript-entry>h3 a:hover{text-decoration:underline}.manuscript-writing{font:16px/1.6 var(--body-font);color:#222;overflow-wrap:anywhere;white-space:pre-wrap}.manuscript-writing p{margin:0 0 16px}.manuscript-writing h2,.manuscript-writing h3{font-family:var(--body-font);color:#222}.manuscript-writing a{color:#444;text-decoration:underline}.manuscript-intro,.manuscript-empty p{font:16px/1.6 var(--body-font);color:#555}.manuscript-empty{padding:30px 0}.manuscript-empty h2{color:#333;letter-spacing:0}.manuscript-paper li{color:#333}.manuscript-entry>h3 a:focus-visible{outline:2px solid #333;outline-offset:3px}.graph-node[data-node-kind=manuscript]{border-style:solid}

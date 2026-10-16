@@ -1,0 +1,75 @@
+/* Landing-only palette: black, white and electric purple. */
+body:not(.workspace-active){background:#080808}
+body:not(.workspace-active) .site-header{max-width:1600px;background:#080808ed;border-color:#ffffff16;padding:22px clamp(24px,5vw,80px)}
+body:not(.workspace-active) .brand-note{font-size:12px}
+body:not(.workspace-active) .site-header .button{border-radius:999px}
+body:not(.workspace-active) footer{background:#080808;padding-block:44px}
+body:not(.workspace-active) footer p{font-size:14px;line-height:1.8}
+#landing .wrap{max-width:1400px;padding-inline:clamp(24px,6vw,90px)}
+#landing .dream-hero{position:relative;isolation:isolate;display:flex;justify-content:center;align-items:center;text-align:center;min-height:650px;height:calc(100svh - 86px);padding:90px 24px 110px;background:transparent;overflow:hidden;gap:0;border-bottom:0}
+#landing .hero-copy{position:relative;z-index:2;width:100%;max-width:1020px}
+#landing .eyebrow{font-size:12px;letter-spacing:.19em;color:#b8b8b8;font-weight:500}
+#landing .hero h1{font-family:"Kulim Park",Arial,sans-serif;font-size:clamp(40px,5.5vw,82px);font-weight:400;line-height:1.07;letter-spacing:-.055em;margin:0 0 26px;color:#f5f5f5}
+#landing .hero h1 span{color:#d5b7ff}
+#landing .hero .intro{max-width:560px;margin:0 auto;color:#c6c6c6;font-size:17px;line-height:1.7}
+#landing .hero-actions{justify-content:center;flex-direction:column;gap:17px;margin-top:30px}
+#landing .button{border-radius:999px;padding:14px 27px;background:linear-gradient(150deg,#8424ec,#7014cc);border-color:#b473ff;color:#fff;box-shadow:0 0 40px #9d36ff33;font-size:15px}
+#landing .quiet-link{font-size:14px;color:#b8b8b8;text-decoration:none;border-bottom:1px solid #606060;padding-bottom:2px}
+#landing .section{padding-block:110px}
+#landing .section-heading{max-width:780px;margin:0;text-align:left}
+#landing .section-heading h2,#landing .closing h2{font:400 clamp(32px,3.8vw,55px)/1.12 "Kulim Park",Arial,sans-serif;letter-spacing:-.045em;margin-bottom:22px}
+#landing .section-heading>p:not(.eyebrow){font-size:17px;max-width:610px;color:#b8b8b8;line-height:1.8}
+#landing .steps{display:grid;grid-template-columns:1fr 1fr;gap:0 12%;margin-top:64px}
+#landing .steps article{border-top:1px solid #9861c980;padding:24px 0;max-width:460px}#landing .steps article:nth-child(1){grid-column:1;grid-row:1}#landing .steps article:nth-child(2){grid-column:2;grid-row:2}#landing .steps article:nth-child(3){grid-column:1;grid-row:3}
+#landing .step-number{font:400 14px "Kulim Park",Arial,sans-serif;color:#b8b8b8;display:block;border:0;padding:0;margin:0 0 35px;letter-spacing:.12em}
+#landing .steps h3{font:400 25px/1.2 "Kulim Park",Arial,sans-serif;letter-spacing:-.035em;margin-bottom:18px}
+#landing .steps p{font-size:16px;color:#b8b8b8;line-height:1.8;margin-bottom:0}
+#landing .inside{border-top:0}
+#landing .notebook{margin-top:52px;background:#0e0e0e;border:1px solid #505050;border-radius:10px;box-shadow:0 18px 80px #0005}
+#landing .notebook-top{padding:20px 26px}
+#landing .sample-badge{font-size:12px}
+#landing .sample-content{background:#151515;padding:44px 50px}
+#landing .sample-content h3{font:400 30px/1.2 "Kulim Park",Arial,sans-serif;letter-spacing:-.035em}
+#landing .sample-content>p:not(.node-tag){font:17px/1.9 "Kulim Park",Arial,sans-serif}
+#landing .sample-reference{font-size:12px}
+#landing .feature-notes{gap:44px;margin-top:65px}
+#landing .feature-index{font-size:12px;letter-spacing:.12em;color:#b8b8b8;display:block;margin-bottom:20px}
+#landing .feature-notes h3{font-size:21px;line-height:1.3;letter-spacing:-.02em}
+#landing .feature-notes p{font-size:16px;line-height:1.8;color:#b8b8b8}
+#landing .closing{max-width:none;background:transparent;padding-block:110px}
+#landing .closing p:not(.eyebrow){font-size:17px;color:#b8b8b8}
+#landing .closing .button{margin-top:22px}
+@media(max-width:760px){
+ body:not(.workspace-active) .site-header{padding:18px 24px}
+ #landing .dream-hero{height:auto;min-height:calc(100svh - 74px);padding:100px 24px 120px}
+ #landing .hero h1{font-size:clamp(36px,7vw,54px);letter-spacing:-.05em}
+ #landing .hero .intro,#landing .hero-detail{font-size:16px}
+ #landing .hero-actions{align-items:center}
+ #landing .section{padding-block:70px}
+ #landing .steps{grid-template-columns:1fr;gap:32px;margin-top:36px}
+ #landing .step-number{margin-bottom:20px}
+ #landing .notebook-body{grid-template-columns:1fr}
+ #landing .sample-content{padding:30px 24px}
+ #landing .notebook-top{padding:16px}
+ #landing .feature-notes{grid-template-columns:1fr;gap:30px;margin-top:45px}
+ #landing .feature-index{margin-bottom:12px}
+ #landing .closing{padding-block:75px}
+}
+@media(prefers-reduced-motion:reduce){#landing *,#landing *::before{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+#landing{position:relative;isolation:isolate;background:#030303}#landing>section{position:relative;z-index:1}#landing .starfield{position:fixed;inset:0;width:100%;height:100svh;pointer-events:none;z-index:0}
+
+#landing .hero-detail{font-size:16px;color:#b8b8b8;line-height:1.7;margin:8px auto 0;max-width:600px}
+#landing .hero .eyebrow{color:#d5b7ff;letter-spacing:.12em;margin-bottom:30px}
+#landing .button:hover{background:linear-gradient(150deg,#9338fa,#8424ec);color:#fff!important;box-shadow:0 0 48px #9d36ff50}
+#landing a:focus-visible,#landing button:focus-visible{outline-color:#d5b7ff}
+#landing .notebook-tabs button[aria-selected=true]{background:#291639;border-color:#9d36ff;color:#f5f5f5}
+body:not(.workspace-active) .site-header .button{border-color:#a65bff;color:#e3caff;background:#1b0d28}
+body:not(.workspace-active) .site-header .button:hover{background:#8424ec;color:#fff!important}
+
+#landing h1,#landing .section-heading h2,#landing .closing h2{text-shadow:0 0 24px #9d36ff45,0 0 65px #9d36ff20}
+#landing .hero h1 span{text-shadow:0 0 22px #9d36ff70,0 0 55px #9d36ff35}
+#landing .section-heading,#landing .steps article,#landing .feature-notes article{text-shadow:0 2px 12px #000,0 0 28px #000}
+#landing .inside .section-heading{margin-left:auto;max-width:600px;text-align:right}
+#landing .closing{border-top:0}
+@media(max-width:760px){#landing .steps article:nth-child(n){grid-column:1;grid-row:auto;max-width:85%}#landing .steps article:nth-child(2){justify-self:end;text-align:right}#landing .inside .section-heading{max-width:100%}#landing .steps{gap:30px}#landing .step-number{margin-bottom:14px}}

@@ -1,0 +1,22 @@
+{
+  "name": "daydream-notebook",
+  "version": "2.1.1",
+  "private": true,
+  "description": "Daydream creative notebook: static frontend with Firebase account storage.",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "start": "node scripts/dev-server.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs && node --test tests/dev-server.test.mjs",
+    "test": "node --test tests/dev-server.test.mjs && node tests/review.cjs && node tests/workspace-v2.cjs && node tests/account.cjs && node tests/firebase-contract.cjs"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "6.2.5",
+    "jsdom": "30.1.2",
+    "@napi-rs/canvas": "0.1.100",
+    "pdf-lib": "1.17.1"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

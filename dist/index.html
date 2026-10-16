@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daydream — A place for your imagined worlds</title>
+<meta name="description" content="Give your imagination a place on the page. Explore a personal notebook for capturing ideas and organizing imagined worlds.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23141414'/%3E%3Cpath d='M9 8h6c7 0 11 16 0 16H9z' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="workspace.css">
+<link rel="stylesheet" href="story-editor.css">
+<link rel="stylesheet" href="dream-capture.css">
+<link rel="stylesheet" href="refinements.css">
+<link rel="stylesheet" href="monochrome.css">
+<link rel="stylesheet" href="node-canvas.css">
+<link rel="stylesheet" href="writing-workspace.css">
+<link rel="stylesheet" href="landing.css">
+<link rel="stylesheet" href="tutorial.css">
+<link rel="stylesheet" href="appearance.css">
+<link rel="stylesheet" href="account.css">
+<link rel="stylesheet" href="experience.css">
+<link rel="preload" href="fonts/KumbhSans-400.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/KumbhSans-500.ttf" as="font" type="font/ttf" crossorigin>
+</head>
+<body class="auth-checking">
+<div class="auth-loading" role="status">Opening your notebook…</div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><a href="#home" class="brand" aria-label="Daydream home"><span class="brand-mark">d.</span><span class="brand-name">daydream</span></a><nav aria-label="Main navigation"><button class="account-button" data-auth-mode="login" type="button">Log In</button><button class="account-button" data-auth-mode="signup" type="button">Sign Up</button><button class="account-button" data-account-open data-auth-member type="button" hidden>Account</button><button class="account-button" data-auth-logout data-auth-member type="button" hidden>Log Out</button><button type="button" class="tutorial-nav" data-tutorial-open>How it works</button><a href="#workspace" class="button small">Open your workspace</a></nav><button class="mobile-toggle" aria-label="Open navigation" aria-expanded="false">Menu</button></header>
+<main id="main" tabindex="-1">
+<div id="landing">
+<canvas class="starfield" aria-hidden="true"></canvas>
+<section id="home" class="hero dream-hero">
+<div class="hero-copy"><p class="eyebrow subtext-top">A notebook for your inner worlds</p><h1>Somewhere in your mind.<br><span>Something worth writing.</span></h1><p class="intro subtext-bottom">Give your imagined worlds a place to live.</p><p class="hero-detail subtext-bottom">Capture a thought. Connect the places. Make it a story.</p><div class="hero-actions"><a href="#workspace" class="button flow-cta" aria-label="Open your workspace"><span class="flow-label">Open your workspace <span aria-hidden="true">↗</span></span><span class="flow-band" aria-hidden="true"><span class="flow-track"><span class="flow-group"><span>Open your workspace</span><svg class="flow-nodes" viewBox="0 0 80 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="10" width="20" height="12" rx="3"/><path d="M22 16h13m20 0h5"/><rect x="35" y="4" width="20" height="24" rx="3"/><rect x="60" y="10" width="18" height="12" rx="3"/></svg></span><span class="flow-group"><span>Open your workspace</span><svg class="flow-nodes" viewBox="0 0 80 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="10" width="20" height="12" rx="3"/><path d="M22 16h13m20 0h5"/><rect x="35" y="4" width="20" height="24" rx="3"/><rect x="60" y="10" width="18" height="12" rx="3"/></svg></span></span></span></a></div></div>
+</section>
+</div>
+<section id="workspace" class="world-workspace" hidden><div id="workspace-content"></div></section>
+</main>
+<footer class="wrap"><div><a href="#home" class="brand"><span class="brand-mark">d.</span><span class="brand-name">daydream</span></a><p>A creative notebook for imagined worlds.</p></div><div class="footer-copy"><p>A visual communication design thesis project.</p><p>Your writing syncs with your Firebase account. Existing browser writing can be imported after login.<br>Clearing site data removes guest writing and unsynced recovery copies. Voice recognition may use a browser provider.<br>A creative tool, not a diagnostic or treatment service.</p><span>© <span id="year">2026</span> Daydream</span></div></footer>
+<script src="daydream-id.js"></script>
+<script src="world-store.js"></script>
+<script src="workspace-db.js"></script>
+<script src="account-store.js"></script>
+<script src="firebase-client.js"></script>
+<script src="experience.js"></script>
+<script src="node-canvas.js"></script>
+<script src="writing-format.js"></script>
+<script src="document-export.js"></script>
+<script src="world-manuscript.js"></script>
+
+<script src="speech-input.js"></script>
+<script src="dream-capture.js"></script>
+<script src="workspace.js"></script>
+<script src="pause.js"></script>
+<script src="landing-stars.js"></script>
+<script src="tutorial.js"></script>
+<script src="account.js"></script>
+<script src="app.js"></script>
+</body></html>

@@ -1,0 +1,10 @@
+node_modules/
+.vercel/
+.daydream-runtime/
+certs/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db

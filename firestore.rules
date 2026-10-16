@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    function allowedTable(table) {
+      return table in ['realities', 'documents', 'catalog', 'edges', 'captures', 'trash', 'settings'];
+    }
+    function knownType(type) {
+      return type in ['chapter', 'scene', 'character', 'timeline', 'plotline', 'location', 'rules', 'object', 'note', 'volume', 'arc', 'name'];
+    }
+    function title(value) {
+      return value.name is string && value.name.size() > 0 && value.name.size() <= 200;
+    }
+    function valid(table) {
+      let row = request.resource.data;
+      let value = row.value;
+      return row.keys().hasOnly(['value', 'revision', 'deleted', 'lastJob'])
+        && row.keys().hasAll(['value', 'revision', 'deleted', 'lastJob'])
+        && value is map && value.id is string && value.id.size() <= 512
+        && row.revision is int && row.revision > 0
+        && row.deleted is bool && row.lastJob is string && row.lastJob.size() <= 100
+        && (row.deleted || (
+          (table != 'realities' || title(value))
+          && (table != 'documents' || (title(value) && knownType(value.type)
+            && value.realityId is string && value.html is string && value.html.size() <= 900000))
+          && (table != 'catalog' || (title(value) && knownType(value.type)
+            && value.realityId is string && value.searchText is string && value.searchText.size() <= 2000))
+          && (table != 'edges' || (value.realityId is string && value.source is string && value.target is string))
+          && (table != 'captures' || (title(value) && value.text is string && value.text.size() <= 900000))
+        ));
+    }
+    match /users/{uid}/{table}/{entryId} {
+      allow read: if owner(uid) && allowedTable(table);
+      allow create: if owner(uid) && allowedTable(table) && valid(table)
+        && request.resource.data.revision == 1;
+      allow update: if owner(uid) && allowedTable(table) && valid(table)
+        && request.resource.data.revision == resource.data.revision + 1;
+      // App deletions use revisioned tombstones so stale devices cannot recreate removed entries.
+      allow delete: if false;
+    }
+  }
+}

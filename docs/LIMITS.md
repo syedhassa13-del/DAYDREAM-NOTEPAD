@@ -1,0 +1,11 @@
+# Persistence, privacy and technical limits
+
+- Firebase Authentication handles Google and email/password login. Passwords are not stored in application documents. Remember-me selects persistent login; otherwise login lasts for the browser session.
+- Firestore account paths are /users/{uid}/{table}/{entryId}. IndexedDB holds a separate recovery cache and durable sync queue per UID and browser origin. Local edits complete before network sync; the visible status distinguishes device save, pending sync, success and conflict.
+- Existing guest writing is preserved and imported only through the explicit Account action. This source ZIP does not contain writing saved in the live account or a browser cache.
+- Entries are separate records. Catalog metadata supports paginated libraries; bodies load on demand. Per-record payloads are limited to about 900 KB; metadata queries cap at 10,000 rows per table/query. Search includes bounded catalog excerpts, not every word of a novel. Thousands of chapters are tested; hundreds of thousands of scenes or unlimited simultaneous users are not supported promises.
+- Full manuscript export loads included text into device memory. Extremely large exports may need splitting. PDF/JPG export is local. The JSON recovery copy in Account contains device-cached entries and is not a complete guaranteed cloud backup.
+- Firebase quotas and hosting plan terms still apply. This ZIP does not enable billing, enlarge quotas, guarantee unlimited free use, or implement AI editing.
+- Speech recognition depends on browser support and context. Unsupported browsers receive typed/pasted text capture; browser speech services may process audio externally only when the user activates the disclosed control.
+- Changing website origin creates a different browser cache. Same-account cloud data restores after authentication and download. Pending data must finish syncing from its original origin.
+- Software tests simulate Firebase SDK transport and DOM behavior. Temporary connection errors retry with backoff up to 30 seconds; permission errors and editing conflicts require resolving the displayed issue. Real Google popups, delivery of reset emails, live Firestore permissions, cross-device networking and browser visuals require the owner's manual smoke test.

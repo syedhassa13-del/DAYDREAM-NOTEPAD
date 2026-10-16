@@ -1,0 +1,13 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {"collectionGroup": "documents", "fieldPath": "value.html", "indexes": []},
+    {"collectionGroup": "documents", "fieldPath": "value.format", "indexes": []},
+    {"collectionGroup": "catalog", "fieldPath": "value.searchText", "indexes": []},
+    {"collectionGroup": "catalog", "fieldPath": "value.excerpt", "indexes": []},
+    {"collectionGroup": "catalog", "fieldPath": "value.linkTargets", "indexes": []},
+    {"collectionGroup": "captures", "fieldPath": "value.text", "indexes": []},
+    {"collectionGroup": "trash", "fieldPath": "value.document", "indexes": []},
+    {"collectionGroup": "trash", "fieldPath": "value.edges", "indexes": []}
+  ]
+}

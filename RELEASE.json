@@ -1,0 +1,8 @@
+{
+  "version": "2.1.1",
+  "prepared": "2026-10-16",
+  "sourceCommit": "f5b2fd0cfe9ed2655518ee8ef02641926756909c",
+  "framework": "Static HTML/CSS/JavaScript",
+  "output": "dist",
+  "firebaseProject": "daydream-47a16"
+}
