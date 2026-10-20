@@ -12,7 +12,7 @@ async function route(){
  const workspace=protectedRoute(location.hash);document.getElementById('landing').hidden=workspace;document.getElementById('workspace').hidden=!workspace;document.body.classList.toggle('workspace-active',workspace);document.body.classList.toggle('graph-active',workspace&&location.hash!=='#capture');
  if(!workspace||location.hash==='#capture')window.DaydreamNodeCanvas.dispose();document.title=workspace?'Your workspace — Daydream':'Daydream — A place for your imagined worlds';
  if(workspace){if(location.hash==='#capture')await window.DaydreamCapture.render();else await window.DaydreamWorkspace.render();if(token!==routing)return;window.DaydreamAuth?.remember(location.hash);window.DaydreamAuth?.controls();window.scrollTo({top:0,behavior:'instant'});
-  if(!window.DaydreamAuth?.profilePending&&window.DaydreamTutorial?.needsIntro())window.DaydreamTutorial.enter();
+  if(!window.DaydreamAuth?.profilePending&&window.DaydreamTutorial?.needsIntro())window.DaydreamTutorial.enter();else window.DaydreamGuide?.maybeStart();
   const heading=document.querySelector('#workspace h1');if(heading&&!document.querySelector('dialog[open]')){heading.tabIndex=-1;heading.focus({preventScroll:true});}
  }else{window.DaydreamExperience?.reveal();if(location.hash){const target=document.getElementById(location.hash.slice(1));if(target)requestAnimationFrame(()=>target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));}}
 }

@@ -45,7 +45,20 @@ async function run(action,data){if(!await prepare()){message('Save your writing 
  else if(action==='cloud'){if(dialog.dataset.recoveryDownloaded!=='yes')throw Error('Download your device recovery copy first so your edits are kept.');if(!confirm('Replace pending device changes with the current cloud versions? Your downloaded recovery file keeps the device copy.'))return;await repo.active.useCloud();window.DaydreamWorkspace.reset();window.DaydreamCapture.reset();window.dispatchEvent(new Event('daydream:account-changed'));draw();message('Cloud versions loaded. Your device changes are in the downloaded recovery copy.');}
  }catch(e){message(firebase?explain(e):(bootError||'Account services could not load. Check your connection and reload.'));}finally{setBusy(false);controls();}}
  dialog.addEventListener('click',e=>{const b=e.target.closest('[data-account-action]');if(b)run(b.dataset.accountAction);});document.addEventListener('click',e=>{const b=e.target.closest('[data-auth-mode],[data-account-open],[data-auth-logout]');if(!b)return;if(b.hasAttribute('data-auth-logout'))run('logout');else open({mode:b.dataset.authMode||'login'});});dialog.addEventListener('cancel',e=>{if(profilePending){e.preventDefault();run('skip-profile');}});
- function storageStatus(){if(!user||!repo.isAccount){banner.hidden=true;return;}const active=repo.active;banner.hidden=!active.error&&!active.queue.length;banner.innerHTML=`<span>${esc(repo.status())}${active.error?`<br>${esc(active.error)}`:''}</span><button data-account-open>Account</button>`;if(!window.DaydreamStoryEditor?.hasUnsaved()&&!window.DaydreamCapture?.hasUnsaved?.())document.querySelectorAll('#work-status,#capture-save-status').forEach(el=>el.textContent=repo.status());}
+ let dismissedStorageIssue='',lastStorageIssue='';
+ function storageStatus(){window.DaydreamWorkspaceUI?.saveState();if(!user||!repo.isAccount){dismissedStorageIssue='';lastStorageIssue='';banner.hidden=true;return;}
+  const active=repo.active,pending=active.queue.length;
+  const issue=active.state==='conflict'?'conflict':pending&&navigator.onLine===false?'offline':active.error?'cloud':'';
+  if(!issue){banner.hidden=true;if(!pending){dismissedStorageIssue='';lastStorageIssue='';}return;}
+  lastStorageIssue=issue;
+  if(dismissedStorageIssue===issue){banner.hidden=true;return;}
+  const text=issue==='conflict'?'Sync conflict. Open Account to resolve.':issue==='offline'?'Offline. Your changes stay on this device.':'Cloud sync needs attention. Your device copy is kept.';
+  banner.hidden=false;
+  const content=`<span>${esc(text)}</span><button data-account-open>Account</button><button type="button" data-dismiss-storage aria-label="Dismiss sync notification">×</button>`;
+  if(banner.innerHTML!==content)banner.innerHTML=content;
+  banner.title=active.error||'';
+ }
+ banner.addEventListener('click',e=>{if(e.target.closest('[data-dismiss-storage]')){dismissedStorageIssue=lastStorageIssue;banner.hidden=true;}});
  window.addEventListener('daydream:storage-status',storageStatus);
  async function change(next){
   if(user?.uid===next?.uid&&!initial)return;document.body.classList.add('account-switching');clearTimeout(resumeTimer);

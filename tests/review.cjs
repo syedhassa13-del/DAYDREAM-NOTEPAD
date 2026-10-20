@@ -132,7 +132,7 @@ test('styles use neutral shades or approved landing purple and graph controls ex
     for(const match of css.matchAll(/#([0-9a-f]{6})(?:[0-9a-f]{2})?\b/gi)) {
       const [r,g,b]=match[1].match(/../g).map(c=>parseInt(c,16)/255),max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
       const hue=delta===0?0:((max===r?(g-b)/delta:max===g?(b-r)/delta+2:(r-g)/delta+4)*60+360)%360;
-      assert.ok(delta===0||(['landing.css','tutorial.css','appearance.css','account.css','experience.css'].includes(file)&&hue>=260&&hue<=285),`Unapproved color ${match[0]} in ${file}`);
+      assert.ok(delta===0||(['landing.css','tutorial.css','appearance.css','account.css','experience.css','workspace-refinements.css'].includes(file)&&hue>=260&&hue<=285),`Unapproved color ${match[0]} in ${file}`);
     }
   }
   const script=fs.readFileSync(path.join(project,'dist/node-canvas.js'),'utf8');assert.ok(script.includes('pointermove'));assert.ok(script.includes('ArrowLeft'));assert.ok(script.includes('onConnect'));assert.ok(script.includes('Fit canvas'));

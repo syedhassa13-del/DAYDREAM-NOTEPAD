@@ -25,3 +25,7 @@
 .account-dialog button:disabled{opacity:.5;cursor:wait}
 body.account-switching #workspace{pointer-events:none;opacity:.5}
 @media(max-width:760px){.account-dialog{padding:23px}.writer-header .writer-actions{flex-wrap:wrap}.account-storage-banner{bottom:8px;right:8px}}
+
+/* Author display:flex must never override the banner's hidden state. */
+.account-storage-banner[hidden]{display:none!important}
+.account-storage-banner [data-dismiss-storage]{text-decoration:none;font-size:18px;line-height:1;padding:4px;min-width:26px;min-height:26px}
