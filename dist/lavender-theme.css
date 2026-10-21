@@ -1,0 +1,55 @@
+/* Readable interface scale for Chakra Petch; saved inline writing styles win. */
+:root{--heading-font:'Chakra Petch',sans-serif;--body-font:'Chakra Petch',sans-serif;--serif:var(--heading-font);--accent:#bea0e8}
+body{font-family:'Chakra Petch',sans-serif;font-size:17px;line-height:1.55}
+button,input,textarea,select{font-family:'Chakra Petch',sans-serif;font-size:16px}
+.site-header nav,.site-header nav :is(a,button),.tutorial-nav,.account-button{font-size:17px;line-height:1.4}
+.site-header .brand-name{font-size:26px}.brand .brand-mark,.writer-brand .brand-mark,.account-dialog .brand-mark{font-family:'Chakra Petch',sans-serif}
+.writer-header .writer-actions :is(button,a){font-size:16px;line-height:1.4}
+.writer-sidebar :is(a,button),.library-entry,.graph-node{font-size:16px}
+.sidebar-head h2{font-size:19px}.graph-node-heading strong{font-size:20px}
+.account-dialog .auth-field input:not([type=checkbox]){font-size:17px}
+.account-dialog .auth-intro p,.account-dialog .auth-google,.account-dialog .button{font-size:16px}
+.account-dialog .auth-forgot,.account-dialog.auth-entry .account-links button,.account-dialog .remember-label{font-size:14px}
+.account-dialog .remember-label{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.account-dialog .auth-intro h2{font-size:30px}.account-dialog .auth-privacy{font-size:12px}
+.tutorial-content p,.tutorial-dialog button,.workspace-guide p{font-size:16px;line-height:1.5}
+.format-controls label,.format-controls :is(input,select,button){font-size:15px}
+.document-paper #document-body{font-family:'Chakra Petch',sans-serif;font-size:18px;line-height:1.65}
+body:not(.workspace-active)>footer p{font-size:13px}
+/* Lavender-filled actions need dark lettering to retain contrast. */
+.account-dialog>.account-scroll-more,.flow-band{color:#181818!important}
+.account-dialog>.account-scroll-more:hover{color:#181818!important}
+@media(max-width:760px){.site-header nav :is(a,button),.writer-header .writer-actions :is(a,button){font-size:16px}.site-header .brand-name{font-size:24px}.account-dialog .remember-label{font-size:13px}.document-paper #document-body{font-size:17px}}
+body:not(.workspace-active) .site-header .button{background:#0a0a0a;color:#bea0e8;border-color:#bea0e880}
+body:not(.workspace-active) .site-header .button:hover{background:#bea0e8;color:#181818!important}
+.tutorial-controls [data-tour=finish],.demo-action,.demo-confirm,#landing .notebook-tabs button[aria-selected=true]{color:#181818}
+.capture-mic:hover,.capture-mic:focus-visible{color:#181818}
+.account-dialog .remember-label span{font-size:14px;line-height:1.4}
+.workspace-guide-card{font-size:14px}.guide-controls button{font-size:14px}
+@media(max-width:380px){.account-dialog .remember-label span{font-size:12px}}
+/* All workspace headers share the landing's fading upper black layer. */
+.writer-header.compact-header{background:linear-gradient(to bottom,#030303 0%,#030303e8 45%,#03030370 100%);border-bottom:0;box-shadow:none;backdrop-filter:none}
+.writer-header.compact-header::after{content:'';position:absolute;top:100%;left:0;right:0;height:30px;background:linear-gradient(to bottom,#03030370,transparent);pointer-events:none}
+/* Capture keeps a full-width header while its writing content remains inset. */
+#workspace:has(.capture-layout){max-width:none;width:100%;padding:0 0 72px;margin:0}
+#workspace-content:has(>.capture-layout)>.compact-header{width:100%;margin:0;padding-inline:24px}
+#workspace-content>.capture-heading,#workspace-content>.capture-layout{width:calc(100% - 96px);max-width:1312px;margin-inline:auto}
+#workspace-content>.capture-heading{padding-top:38px;margin-top:0;margin-bottom:32px}
+.capture-heading h1{margin:0 0 14px;line-height:1.15}
+.capture-heading>p:last-child{margin:0;line-height:1.6}
+.capture-writing .capture-editor-toolbar{margin-bottom:24px;min-height:36px}
+.capture-writing>label{display:block;margin:0 0 10px;font-size:17px;line-height:1.5}
+.capture-writing>#capture-name{display:block;margin:0 0 28px;min-height:50px}
+.capture-writing .capture-input-wrap{margin-bottom:24px}
+.capture-writing .capture-actions{margin-top:0;gap:14px}
+@media(max-width:760px){
+ #workspace-content:has(>.capture-layout)>.compact-header{padding-inline:16px}
+ #workspace-content>.capture-heading,#workspace-content>.capture-layout{width:calc(100% - 32px)}
+ #workspace-content>.capture-heading{padding-top:30px;margin-bottom:26px}
+ .capture-writing{padding:22px}.capture-writing>#capture-name{margin-bottom:24px}
+ .capture-writing>label{font-size:16px}
+}
+/* Keep selected writing visible while a formatting field has keyboard focus. */
+::highlight(daydream-format-selection){background:#bea0e855;color:#222}
+.format-controls input[type=number]{min-height:38px;font-variant-numeric:tabular-nums}
+.format-controls input[type=number]:focus{outline:2px solid #bea0e8;outline-offset:2px}

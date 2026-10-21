@@ -8,7 +8,7 @@
     "start": "node scripts/dev-server.mjs",
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs && node --test tests/dev-server.test.mjs",
-    "test": "node --test tests/dev-server.test.mjs && node tests/review.cjs && node tests/workspace-v2.cjs && node tests/account.cjs && node tests/firebase-contract.cjs && node tests/capture-dictation.cjs"
+    "test": "node --test tests/dev-server.test.mjs && node tests/review.cjs && node tests/workspace-v2.cjs && node tests/account.cjs && node tests/firebase-contract.cjs && node tests/capture-dictation.cjs && node tests/format-controls.cjs"
   },
   "devDependencies": {
     "fake-indexeddb": "6.2.5",

@@ -1,49 +1,49 @@
-.tutorial-dialog{width:min(860px,calc(100vw - 40px));max-height:calc(100dvh - 40px);padding:0;border:1px solid #51475f;border-radius:18px;background:#090909;color:#f4f1f7;overflow:auto;font-family:var(--body-font);box-shadow:0 24px 100px #0009}
+.tutorial-dialog{width:min(860px,calc(100vw - 40px));max-height:calc(100dvh - 40px);padding:0;border:1px solid #bea0e8;border-radius:18px;background:#090909;color:#bea0e8;overflow:auto;font-family:'Chakra Petch',sans-serif;box-shadow:0 24px 100px #0009}
 .tutorial-dialog::backdrop{background:#000000a6;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.tutorial-top{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #282828;font-size:12px;letter-spacing:.12em;color:#c7becf}
-.tutorial-dialog button{font:inherit;cursor:pointer;background:transparent;color:#eee;border:1px solid #51475f;border-radius:7px;padding:10px 16px;min-height:40px}
+.tutorial-top{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #282828;font-size:12px;letter-spacing:.12em;color:#bea0e8}
+.tutorial-dialog button{font:inherit;cursor:pointer;background:transparent;color:#eee;border:1px solid #bea0e8;border-radius:7px;padding:10px 16px;min-height:40px}
 .tutorial-top button{font-size:24px;border:0;padding:0;width:36px;min-height:32px}
-.tutorial-dialog button:focus-visible,.tutorial-help:focus-visible,.overview-create:focus-visible{outline:2px solid #bf8aff;outline-offset:4px}
+.tutorial-dialog button:focus-visible,.tutorial-help:focus-visible,.overview-create:focus-visible{outline:2px solid #bea0e8;outline-offset:4px}
 .tutorial-dialog button:disabled{opacity:.4;cursor:default}
 .tutorial-layout{display:grid;grid-template-columns:1.05fr 1fr;min-height:310px}
 .tutorial-visual{display:flex;align-items:center;justify-content:center;overflow:hidden;min-width:0;border-right:1px solid #282828;background-color:#080808;background-image:radial-gradient(#292929 1px,transparent 1px);background-size:20px 20px;padding:12px}
 .tutorial-content{display:flex;flex-direction:column;justify-content:center;padding:30px 36px}
-.tutorial-content>span{font-size:14px;color:#bb80ff}.tutorial-content h2{font-family:var(--heading-font);font-size:32px;line-height:1.15;margin:16px 0}.tutorial-content p{font-size:16px;line-height:1.55;color:#c7becf;margin:0;max-width:30ch}
-.tutorial-controls{display:flex;align-items:center;gap:10px;border-top:1px solid #282828;padding:16px 24px;font-size:14px}.tutorial-controls [data-tour=next]{margin-left:auto;background:#8d3fe9;border-color:#8d3fe9;color:#fff}.tutorial-controls [data-tour=pause]{border-color:transparent;color:#c4b8d0}
-.tutorial-progress{height:4px;background:#242424;position:sticky;bottom:0}.tutorial-progress span{display:block;height:100%;background:#b575ff;transform-origin:left;transform:scaleX(0)}
+.tutorial-content>span{font-size:14px;color:#bea0e8}.tutorial-content h2{font-family:'Chakra Petch',sans-serif;font-size:32px;line-height:1.15;margin:16px 0}.tutorial-content p{font-size:16px;line-height:1.55;color:#bea0e8;margin:0;max-width:30ch}
+.tutorial-controls{display:flex;align-items:center;gap:10px;border-top:1px solid #282828;padding:16px 24px;font-size:14px}.tutorial-controls [data-tour=next]{margin-left:auto;background:#bea0e8;border-color:#bea0e8;color:#fff}.tutorial-controls [data-tour=pause]{border-color:transparent;color:#bea0e8}
+.tutorial-progress{height:4px;background:#242424;position:sticky;bottom:0}.tutorial-progress span{display:block;height:100%;background:#bea0e8;transform-origin:left;transform:scaleX(0)}
 /* Illustrative UI only: the tutorial never creates saved worlds or documents. */
-.tutorial-demo-stage{position:relative;width:400px;max-width:100%;height:300px;font-family:var(--body-font)}
-.demo-node{position:absolute;left:10%;top:30%;width:78%;border:1px solid #755692;border-radius:10px;background:#141414;color:#eee;padding:20px;text-align:left}
-.demo-node small,.demo-modal small,.demo-sheet small{display:block;font-size:12px;color:#c5b6d6;margin-bottom:12px}
-.demo-node strong,.demo-sheet strong,.demo-library strong{display:block;font-family:var(--heading-font);font-size:23px;line-height:1.2;font-weight:500}
-.demo-action,.demo-confirm{display:inline-block;border-radius:7px;padding:10px 15px;background:#8d3fe9;color:#fff;font-size:14px;line-height:1.3;white-space:nowrap}
+.tutorial-demo-stage{position:relative;width:400px;max-width:100%;height:300px;font-family:'Chakra Petch',sans-serif}
+.demo-node{position:absolute;left:10%;top:30%;width:78%;border:1px solid #bea0e8;border-radius:10px;background:#141414;color:#eee;padding:20px;text-align:left}
+.demo-node small,.demo-modal small,.demo-sheet small{display:block;font-size:12px;color:#bea0e8;margin-bottom:12px}
+.demo-node strong,.demo-sheet strong,.demo-library strong{display:block;font-family:'Chakra Petch',sans-serif;font-size:23px;line-height:1.2;font-weight:500}
+.demo-action,.demo-confirm{display:inline-block;border-radius:7px;padding:10px 15px;background:#bea0e8;color:#fff;font-size:14px;line-height:1.3;white-space:nowrap}
 .demo-action{position:absolute;left:22%;top:66%}
 .demo-confirm{float:right;margin-top:14px}
-.demo-modal{position:absolute;left:10%;top:10%;width:80%;padding:20px;background:#161616;border:1px solid #755692;border-radius:10px;opacity:0;animation:demo-modal 7s linear infinite}
+.demo-modal{position:absolute;left:10%;top:10%;width:80%;padding:20px;background:#161616;border:1px solid #bea0e8;border-radius:10px;opacity:0;animation:demo-modal 7s linear infinite}
 .demo-modal::after,.demo-sheet::after{content:'';display:block;clear:both}
-.demo-input{display:block;padding:10px 12px;background:#090909;border:1px solid #9861c9;border-radius:5px;font-size:16px;min-height:42px}
+.demo-input{display:block;padding:10px 12px;background:#090909;border:1px solid #bea0e8;border-radius:5px;font-size:16px;min-height:42px}
 .demo-typed{font-weight:400;display:block;white-space:nowrap;overflow:hidden;clip-path:inset(0 100% 0 0);animation:demo-type 7s steps(10,end) infinite}
 .demo-cursor{position:absolute;width:22px;height:28px;left:70%;top:80%;fill:#fff;stroke:#141414;stroke-width:1.5;filter:drop-shadow(0 2px 3px #0008);animation:cursor-create 7s ease-in-out infinite;z-index:5}
 .demo-entered{position:absolute;inset:0;background-color:#080808;background-image:radial-gradient(#292929 1px,transparent 1px);background-size:20px 20px;opacity:0;animation:demo-enter 7s linear infinite}
 .demo-entered .demo-node{left:6%;top:32%;width:70%;font-size:16px}.demo-entered .demo-action{left:42%;top:10%}
 [data-demo=enter] .demo-cursor{animation-name:cursor-enter}
 [data-demo=enter]>.tutorial-demo-stage>.demo-node{animation:node-click 7s ease-in-out infinite}
-.demo-options{background:#090909;border:1px solid #51475f;border-radius:6px;font-size:14px;overflow:hidden}.demo-options span{display:block;padding:6px 12px;line-height:1.3}.demo-choice{animation:demo-choice 7s linear infinite}
+.demo-options{background:#090909;border:1px solid #bea0e8;border-radius:6px;font-size:14px;overflow:hidden}.demo-options span{display:block;padding:6px 12px;line-height:1.3}.demo-choice{animation:demo-choice 7s linear infinite}
 .demo-result{top:35%;opacity:0;animation:demo-result 7s linear infinite}
 [data-demo=section] .demo-action{top:12%}
 [data-demo=section] .demo-modal{top:20%;animation-name:section-modal}
 [data-demo=section] .demo-cursor{animation-name:cursor-section}
 .demo-link-source{left:3%;top:34%;width:38%;padding:16px 12px}.demo-link-target{left:66%;top:54%;width:32%;padding:16px 8px}
 .demo-link-source strong,.demo-link-target strong{font-size:16px}
-.demo-port{position:absolute;top:50%;width:10px;height:10px;border:2px solid #d5b7ff;border-radius:50%;background:#141414;transform:translateY(-50%)}.demo-link-source .demo-port{right:-5px}.demo-link-target .demo-port{left:-5px}
-.demo-wire{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.demo-wire path{fill:none;stroke:#b575ff;stroke-width:2.5;stroke-dasharray:180;stroke-dashoffset:180;animation:demo-wire 7s ease-in-out infinite}
+.demo-port{position:absolute;top:50%;width:10px;height:10px;border:2px solid #bea0e8;border-radius:50%;background:#141414;transform:translateY(-50%)}.demo-link-source .demo-port{right:-5px}.demo-link-target .demo-port{left:-5px}
+.demo-wire{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.demo-wire path{fill:none;stroke:#bea0e8;stroke-width:2.5;stroke-dasharray:180;stroke-dashoffset:180;animation:demo-wire 7s ease-in-out infinite}
 [data-demo=connect] .demo-cursor{animation-name:cursor-connect}
-.demo-sheet{position:absolute;left:10%;top:14%;width:80%;padding:20px;border-radius:5px;background:#161616;color:#d2d2d2;min-height:190px}.demo-sheet small{color:#b49ac9}
+.demo-sheet{position:absolute;left:10%;top:14%;width:80%;padding:20px;border-radius:5px;background:#161616;color:#d2d2d2;min-height:190px}.demo-sheet small{color:#bea0e8}
 .demo-writing{font-size:16px;line-height:1.5;min-height:45px}.demo-save{animation:demo-choice 7s linear infinite}
-.demo-assignment{position:absolute;left:14%;top:17%;width:74%;padding:18px;background:#161616;border:1px solid #755692;border-radius:8px;opacity:0;animation:demo-assignment 7s linear infinite}
-.demo-assignment>span:not(.demo-confirm){display:block;border:1px solid #51475f;padding:8px 12px;border-radius:5px;margin-bottom:10px;font-size:14px}
+.demo-assignment{position:absolute;left:14%;top:17%;width:74%;padding:18px;background:#161616;border:1px solid #bea0e8;border-radius:8px;opacity:0;animation:demo-assignment 7s linear infinite}
+.demo-assignment>span:not(.demo-confirm){display:block;border:1px solid #bea0e8;padding:8px 12px;border-radius:5px;margin-bottom:10px;font-size:14px}
 [data-demo=capture] .demo-cursor{animation-name:cursor-capture}
-.demo-library{position:absolute;inset:18% 10%;padding:20px;background:#141414;border:1px solid #755692;border-radius:9px}.demo-library .demo-action{left:15%;top:50%}
+.demo-library{position:absolute;inset:18% 10%;padding:20px;background:#141414;border:1px solid #bea0e8;border-radius:9px}.demo-library .demo-action{left:15%;top:50%}
 [data-demo=write] .demo-sheet{opacity:0;animation:demo-enter 7s linear infinite}
 [data-demo=write] .demo-typed{animation-name:demo-write-type}
 [data-demo=write] .demo-cursor{animation-name:cursor-write}
@@ -51,9 +51,9 @@
 @keyframes demo-modal{0%,24%,94%,100%{opacity:0;transform:translateY(8px)}30%,88%{opacity:1;transform:translateY(0)}}
 @keyframes demo-type{0%,38%{clip-path:inset(0 100% 0 0)}65%,100%{clip-path:inset(0 0 0 0)}}
 @keyframes demo-enter{0%,38%,100%{opacity:0}45%,94%{opacity:1}}
-@keyframes node-click{0%,25%,45%,100%{border-color:#755692;box-shadow:none}35%{border-color:#d5b7ff;box-shadow:0 0 24px #9d36ff50}}
+@keyframes node-click{0%,25%,45%,100%{border-color:#bea0e8;box-shadow:none}35%{border-color:#bea0e8;box-shadow:0 0 24px #bea0e850}}
 @keyframes section-modal{0%,24%,87%,100%{opacity:0}30%,80%{opacity:1}}
-@keyframes demo-choice{0%,42%,100%{background:#090909}52%,80%{background:#8d3fe9}}
+@keyframes demo-choice{0%,42%,100%{background:#090909}52%,80%{background:#bea0e8}}
 @keyframes demo-result{0%,86%,100%{opacity:0}90%,96%{opacity:1}}
 @keyframes demo-wire{0%,28%,100%{stroke-dashoffset:180}65%,94%{stroke-dashoffset:0}}
 @keyframes demo-assignment{0%,64%,100%{opacity:0}70%,94%{opacity:1}}
@@ -68,20 +68,20 @@
 .demo-paused .tutorial-visual *{animation-play-state:paused!important}
 @media(max-width:620px){.tutorial-dialog{width:calc(100vw - 24px);border-radius:12px}.tutorial-layout{grid-template-columns:1fr}.tutorial-visual{border-right:0;border-bottom:1px solid #282828;padding:0 18px}.tutorial-demo-stage{height:245px}.tutorial-content{padding:20px 24px}.tutorial-content h2{font-size:26px;margin:10px 0}.tutorial-content p{max-width:none;font-size:15px}.tutorial-top{padding:10px 18px}.tutorial-controls{padding:14px 18px}.demo-node strong,.demo-sheet strong{font-size:20px}.demo-link-source strong,.demo-link-target strong{font-size:14px}.demo-modal{padding:14px}.demo-sheet{padding:16px;min-height:165px}.demo-options span{padding:6px 10px}}
 @media(prefers-reduced-motion:reduce){.tutorial-visual *{animation:none!important}.demo-cursor{display:none}.demo-typed{clip-path:none}.demo-modal,.demo-entered,.demo-result,.demo-assignment,.demo-sheet{opacity:1;transform:none}[data-demo=enter]>.tutorial-demo-stage>.demo-node,[data-demo=section] .demo-result,.demo-assignment{display:none}.demo-wire path{stroke-dashoffset:0}.demo-page-lines i{opacity:1}}
-.writer-actions .tutorial-help,.tutorial-help{width:34px;height:34px;padding:0;border:1px solid #666;border-radius:50%;background:#202020;color:#eee;font:600 16px "Kulim Park",Arial,sans-serif;cursor:pointer;flex-shrink:0}
-.overview-create{position:absolute;top:24px;left:50%;transform:translateX(-50%);z-index:6;border:1px solid #eee;border-radius:24px;padding:13px 24px;background:#f4f4f4;color:#191919;font:600 15px "Kulim Park",Arial,sans-serif;white-space:nowrap;cursor:pointer;box-shadow:0 5px 20px #0006}
+.writer-actions .tutorial-help,.tutorial-help{width:34px;height:34px;padding:0;border:1px solid #666;border-radius:50%;background:#202020;color:#eee;font:600 16px 'Chakra Petch',Arial,sans-serif;cursor:pointer;flex-shrink:0}
+.overview-create{position:absolute;top:24px;left:50%;transform:translateX(-50%);z-index:6;border:1px solid #eee;border-radius:24px;padding:13px 24px;background:#f4f4f4;color:#191919;font:600 15px 'Chakra Petch',Arial,sans-serif;white-space:nowrap;cursor:pointer;box-shadow:0 5px 20px #0006}
 
-.demo-pencil{float:right;font-size:16px;color:#d5b7ff}
+.demo-pencil{float:right;font-size:16px;color:#bea0e8}
 @media(max-width:620px){.demo-modal small{margin-bottom:6px;line-height:1.3}.demo-options span{padding:4px 10px}.demo-modal{padding:12px}}
 [data-demo=capture] .demo-typed{animation-name:demo-capture-type}
 @keyframes demo-capture-type{0%,25%{clip-path:inset(0 100% 0 0)}48%,100%{clip-path:inset(0 0 0 0)}}
-.tutorial-controls{flex-wrap:wrap}.tutorial-controls [data-tour=next]{margin-left:0;background:none;color:#eee;border-color:#51475f}.tutorial-controls [data-tour=finish]{margin-left:auto;background:#8d3fe9;border-color:#8d3fe9;color:#fff}
+.tutorial-controls{flex-wrap:wrap}.tutorial-controls [data-tour=next]{margin-left:0;background:none;color:#eee;border-color:#bea0e8}.tutorial-controls [data-tour=finish]{margin-left:auto;background:#bea0e8;border-color:#bea0e8;color:#fff}
 .demo-manuscript-node{top:35%;animation:node-click 7s ease-in-out infinite}
 .demo-manuscript-sheet{top:8%;left:8%;width:84%;min-height:248px;padding:18px;opacity:0;animation:manuscript-open 7s linear infinite}
 .demo-manuscript-sheet strong{font-size:21px}.demo-manuscript-sheet small{font-size:10px;margin-bottom:8px}
 .demo-manuscript-headings{display:grid;gap:4px;margin-top:12px;font-size:11px;line-height:1.4}.demo-manuscript-headings b{margin-top:3px;font-size:13px}
 .demo-export-action{margin-top:10px;font-size:12px;padding:7px 12px}
-.demo-export-menu{position:absolute;right:12%;bottom:10%;z-index:4;display:flex;gap:10px;padding:12px;background:#161616;border:1px solid #9861c9;border-radius:7px;opacity:0;animation:manuscript-export 7s linear infinite;font-size:14px}.demo-export-menu span{border:1px solid #755692;padding:6px 12px;border-radius:4px}
+.demo-export-menu{position:absolute;right:12%;bottom:10%;z-index:4;display:flex;gap:10px;padding:12px;background:#161616;border:1px solid #bea0e8;border-radius:7px;opacity:0;animation:manuscript-export 7s linear infinite;font-size:14px}.demo-export-menu span{border:1px solid #bea0e8;padding:6px 12px;border-radius:4px}
 [data-demo=manuscript] .demo-cursor{animation-name:cursor-manuscript}
 @keyframes manuscript-open{0%,28%,100%{opacity:0}36%,94%{opacity:1}}
 @keyframes manuscript-export{0%,68%,100%{opacity:0}76%,94%{opacity:1}}

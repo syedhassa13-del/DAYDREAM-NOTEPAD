@@ -132,40 +132,44 @@ test('styles use neutral shades or approved landing purple and graph controls ex
     for(const match of css.matchAll(/#([0-9a-f]{6})(?:[0-9a-f]{2})?\b/gi)) {
       const [r,g,b]=match[1].match(/../g).map(c=>parseInt(c,16)/255),max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
       const hue=delta===0?0:((max===r?(g-b)/delta:max===g?(b-r)/delta+2:(r-g)/delta+4)*60+360)%360;
-      assert.ok(delta===0||(['landing.css','tutorial.css','appearance.css','account.css','experience.css','workspace-refinements.css'].includes(file)&&hue>=260&&hue<=285),`Unapproved color ${match[0]} in ${file}`);
+      assert.ok(delta===0||(['landing.css','landing-ribbon.css','lavender-theme.css','tutorial.css','appearance.css','account.css','experience.css','workspace-refinements.css'].includes(file)&&hue>=260&&hue<=285),`Unapproved color ${match[0]} in ${file}`);
     }
   }
   const script=fs.readFileSync(path.join(project,'dist/node-canvas.js'),'utf8');assert.ok(script.includes('pointermove'));assert.ok(script.includes('ArrowLeft'));assert.ok(script.includes('onConnect'));assert.ok(script.includes('Fit canvas'));
 });
-test('landing-wide starfield repels only nearby stars and stops for reduced motion and hidden tabs', () => {
-  const vm=require('node:vm'), {createCanvas}=require('@napi-rs/canvas');
-  const canvas=createCanvas(600,400),listeners={},pageListeners={},frames=new Map();let sequence=0,change;
+test('ribbon moves continuously, cursor disruption stays local, headline cycles and motion can stop', () => {
+ const vm=require('node:vm'),{createCanvas}=require('@napi-rs/canvas');
+ function field(){
+  const canvas=createCanvas(600,400),listeners={},pageListeners={},frames=new Map(),buttonListeners={};let sequence=0,change;
+  const thought={style:{}},writing={style:{}},toggle={addEventListener:(n,f)=>buttonListeners[n]=f,setAttribute(){}};
   canvas.getBoundingClientRect=()=>({width:600,height:400,left:0,top:0});
-  const motion={matches:false,addEventListener:(name,fn)=>{change=fn;}};
-  const hero={querySelector:()=>canvas,getBoundingClientRect:()=>({width:600,height:400,left:0,top:0}),addEventListener:(name,fn)=>{listeners[name]=fn;}};
-  const document={hidden:false,querySelector:()=>hero,createElement:()=>createCanvas(600,400),addEventListener:(name,fn)=>{pageListeners[name]=fn;}};
-  vm.runInNewContext(fs.readFileSync(path.join(project,'dist/landing-stars.js'),'utf8'),{
-    document,matchMedia:()=>motion,devicePixelRatio:1,performance:{now:()=>0},
-    requestAnimationFrame:fn=>{const id=++sequence;frames.set(id,fn);return id;},cancelAnimationFrame:id=>frames.delete(id),
-    IntersectionObserver:class{constructor(fn){this.fn=fn;}observe(){this.fn([{isIntersecting:true}]);}},
-    ResizeObserver:class{constructor(fn){this.fn=fn;}observe(){this.fn();}}
-  });
-  const before=canvas.toBuffer('image/png'),distant=canvas.getContext('2d').getImageData(0,0,200,400).data.slice();
-  listeners.pointermove({clientX:600,clientY:0,pointerType:'mouse'});
-  for(let time=40;time<=400;time+=40){const pending=[...frames.values()];frames.clear();pending.forEach(fn=>fn(time));}
-  assert.notDeepEqual(canvas.toBuffer('image/png'),before,'Pointer must change the rendered starfield');
-  assert.deepEqual(canvas.getContext('2d').getImageData(0,0,200,400).data,distant,'Distant stars must remain pixel-identical');
-  listeners.pointerleave();
-  for(let time=440;time<=3000;time+=40){const pending=[...frames.values()];frames.clear();pending.forEach(fn=>fn(time));}
-  assert.deepEqual(canvas.toBuffer('image/png'),before,'Stars must return to their exact starting positions');
-  motion.matches=true;change();assert.equal(frames.size,0,'Reduced motion must stop all frames');
-  const still=canvas.toBuffer('image/png');listeners.pointermove({clientX:0,clientY:400,pointerType:'mouse'});assert.deepEqual(canvas.toBuffer('image/png'),still);
-  motion.matches=false;change();assert.ok(frames.size>0);document.hidden=true;pageListeners.visibilitychange();assert.equal(frames.size,0);
-  document.hidden=false;pageListeners.visibilitychange();assert.ok(frames.size>0);
-  const html=fs.readFileSync(path.join(project,'dist/index.html'),'utf8');
-  const heroHtml=html.slice(html.indexOf('<section id="home"'),html.indexOf('</div>\n<section id="workspace"'));
-  assert.ok(heroHtml.includes('Open your workspace'));assert.ok(html.includes('<div id="landing">\n<canvas class="starfield" aria-hidden="true"'));
-  for(const removed of ['Discover Daydream','dream-steps','hero-caption'])assert.ok(!heroHtml.includes(removed));
+  const motion={matches:false,addEventListener:(n,f)=>change=f};
+  const hero={querySelector:s=>s==='.starfield'?canvas:s==='.motion-toggle'?toggle:s==='.headline-thought'?thought:writing,addEventListener:(n,f)=>listeners[n]=f};
+  const document={hidden:false,querySelector:()=>hero,createElement:()=>createCanvas(40,40),addEventListener:(n,f)=>pageListeners[n]=f};
+  vm.runInNewContext(fs.readFileSync(path.join(project,'dist/landing-stars.js'),'utf8'),{document,matchMedia:()=>motion,devicePixelRatio:1,performance:{now:()=>0},requestAnimationFrame:f=>{const id=++sequence;frames.set(id,f);return id;},cancelAnimationFrame:id=>frames.delete(id),IntersectionObserver:class{constructor(f){this.f=f;}observe(){this.f([{isIntersecting:true}]);}},ResizeObserver:class{constructor(f){this.f=f;}observe(){this.f();}}});
+  return {canvas,listeners,pageListeners,frames,thought,writing,document,motion,change:()=>change(),pause:()=>buttonListeners.click(),advance:time=>{const pending=[...frames.values()];frames.clear();pending.forEach(f=>f(time));}};
+ }
+ const a=field(),b=field(),before=a.canvas.toBuffer('image/png');
+ a.listeners.pointermove({clientX:400,clientY:0,pointerType:'mouse'});
+ for(let t=40;t<=400;t+=40){a.advance(t);b.advance(t);}
+ assert.notDeepEqual(b.canvas.toBuffer('image/png'),before,'Ambient stars must move without a pointer');
+ assert.notDeepEqual(a.canvas.toBuffer('image/png'),b.canvas.toBuffer('image/png'),'Pointer must disrupt the moving field');
+ assert.deepEqual(a.canvas.getContext('2d').getImageData(0,0,40,400).data,b.canvas.getContext('2d').getImageData(0,0,40,400).data,'Outside cursor radius matches undisturbed motion');
+ for(let t=440;t<=3480;t+=40)b.advance(t);
+ assert.equal(b.thought.style.opacity,1,'First phrase holds for 3.5 seconds');
+ for(let t=3520;t<=4000;t+=40)b.advance(t);
+ assert.ok(b.thought.style.opacity>0&&b.thought.style.opacity<1,'Outgoing fade remains gradual');assert.ok(b.writing.style.opacity>0&&b.writing.style.opacity<.15,'Incoming phrase begins subtly during the outgoing fade');
+ for(let t=4040;t<=4800;t+=40)b.advance(t);
+ assert.ok(b.writing.style.opacity>0&&b.writing.style.opacity<1,'Incoming phrase fades in gradually');
+ for(let t=4840;t<=6400;t+=40)b.advance(t);
+ assert.equal(b.writing.style.opacity,1);assert.equal(b.thought.style.opacity,0);
+ for(let t=6440;t<=12400;t+=40)b.advance(t);
+ assert.equal(b.thought.style.opacity,1);assert.equal(b.writing.style.opacity,0);
+ b.pause();assert.equal(b.frames.size,0);b.pause();assert.ok(b.frames.size>0);
+ b.motion.matches=true;b.change();assert.equal(b.frames.size,0);assert.equal(b.thought.style.opacity,1);assert.equal(b.writing.style.opacity,0);
+ b.motion.matches=false;b.change();b.document.hidden=true;b.pageListeners.visibilitychange();assert.equal(b.frames.size,0);
+ b.document.hidden=false;b.pageListeners.visibilitychange();assert.ok(b.frames.size>0);
+ const html=fs.readFileSync(path.join(project,'dist/index.html'),'utf8');assert.ok(html.includes('ribbon-cta'));assert.ok(!html.includes('landing-figures'));assert.ok(html.includes('ChakraPetch-400.ttf'));
 });
 test('single-screen landing keeps its footer and all local typeface assets',()=>{
  const html=fs.readFileSync(path.join(project,'dist/index.html'),'utf8'),landing=html.slice(html.indexOf('<div id="landing">'),html.indexOf('<section id="workspace"'));

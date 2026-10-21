@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="account.css">
 <link rel="stylesheet" href="experience.css">
 <link rel="stylesheet" href="workspace-refinements.css">
+<link rel="stylesheet" href="landing-ribbon.css">
+<link rel="stylesheet" href="lavender-theme.css">
+<link rel="preload" href="fonts/ChakraPetch-400.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="fonts/KumbhSans-400.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preload" href="fonts/KumbhSans-500.ttf" as="font" type="font/ttf" crossorigin>
 </head>
@@ -30,7 +33,14 @@
 <div id="landing">
 <canvas class="starfield" aria-hidden="true"></canvas>
 <section id="home" class="hero dream-hero">
-<div class="hero-copy"><p class="eyebrow subtext-top">A notebook for your inner worlds</p><h1>Somewhere in your mind.<br><span>Something worth writing.</span></h1><p class="intro subtext-bottom">Give your imagined worlds a place to live.</p><p class="hero-detail subtext-bottom">Capture a thought. Connect the places. Make it a story.</p><div class="hero-actions"><a href="#workspace" class="button flow-cta" aria-label="Open your workspace"><span class="flow-label">Open your workspace <span aria-hidden="true">↗</span></span><span class="flow-band" aria-hidden="true"><span class="flow-track"><span class="flow-group"><span>Open your workspace</span><svg class="flow-nodes" viewBox="0 0 80 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="10" width="20" height="12" rx="3"/><path d="M22 16h13m20 0h5"/><rect x="35" y="4" width="20" height="24" rx="3"/><rect x="60" y="10" width="18" height="12" rx="3"/></svg></span><span class="flow-group"><span>Open your workspace</span><svg class="flow-nodes" viewBox="0 0 80 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="10" width="20" height="12" rx="3"/><path d="M22 16h13m20 0h5"/><rect x="35" y="4" width="20" height="24" rx="3"/><rect x="60" y="10" width="18" height="12" rx="3"/></svg></span></span></span></a></div></div>
+<div class="hero-copy">
+<h1 class="cycling-headline" aria-label="Somewhere in your mind. Worth writing here.">
+<span class="headline-thought" aria-hidden="true"><span>Somewhere</span><span class="thought-line"><span>in</span><span>your</span><span>mind.</span></span></span>
+<span class="headline-writing" aria-hidden="true"><span>Worth writing</span><span>here.</span></span>
+</h1>
+<div class="hero-actions"><a href="#workspace" class="button ribbon-cta">Open your workspace <span aria-hidden="true">↗</span></a></div>
+<button type="button" class="motion-toggle" aria-label="Pause landing animation" aria-pressed="false">Pause motion</button>
+</div>
 </section>
 </div>
 <section id="workspace" class="world-workspace" hidden><div id="workspace-content"></div></section>
