@@ -109,3 +109,22 @@
  .compact-header .writer-actions .workspace-menu-toggle[aria-expanded=true] svg{transform:rotate(180deg)}
  .compact-header .writer-actions button:disabled{opacity:.4;cursor:default}
 }
+
+/* Dream Capture uses the workspace header at every viewport size. */
+body.workspace-active>.site-header,body.workspace-active>footer{display:none!important}
+body.workspace-active:not(.graph-active) #workspace{padding-top:0}
+.capture-heading{margin-top:30px}
+.capture-editor-toolbar{justify-content:flex-end;margin-bottom:16px}
+.capture-input-wrap{position:relative;margin-bottom:20px}
+.capture-input-wrap #capture-text{display:block;min-height:300px;padding:18px 18px 76px;font-family:"Kumbh Sans",Arial,sans-serif;line-height:1.65;box-sizing:border-box}
+.capture-voice-tools{position:absolute;right:12px;bottom:12px;left:12px;display:flex;align-items:center;justify-content:flex-end;gap:10px;pointer-events:none}
+.capture-voice-tools>*{pointer-events:auto}
+.capture-voice-tools #speech-status{font-size:12px;color:#c4b5d8;margin:0 auto 0 0;max-width:55%;line-height:1.4}
+.capture-voice-tools #speech-status:empty{display:none}
+.capture-voice-tools select{max-width:100px;font:12px "Kumbh Sans",sans-serif;padding:6px;background:#161616;color:#c9c5ce;border:0;border-radius:5px}
+.capture-mic{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;background:#19171c;border:1px solid #7953a2;border-radius:50%;color:#c8a2f2;padding:10px}
+.capture-mic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.capture-mic:hover,.capture-mic:focus-visible{background:#28202f;outline:2px solid #b98be9;outline-offset:2px}
+.capture-mic[hidden]{display:none!important}
+.capture-writing #capture-save-status:empty{display:none}
+@media(max-width:760px){.capture-heading{margin-top:22px}.capture-voice-tools #speech-status{max-width:45%;font-size:11px}.capture-input-wrap #capture-text{min-height:280px;padding-bottom:90px;font-size:16px}.capture-voice-tools{gap:6px}}
