@@ -57,3 +57,9 @@ body:not(.workspace-active) .site-header .button:hover{background:#bea0e8;color:
 .graph-node .node-delete-icon:hover{color:#bea0e8;background:#ffffff0d}
 .graph-node .node-delete-icon:focus-visible{outline:2px solid #bea0e8;outline-offset:2px}
 .graph-node:has(.node-delete-icon) .graph-node-type{max-width:calc(100% - 78px)}
+
+/* Reserve separate space for world-card actions; drag hints never intercept clicks. */
+.graph-node .drag-dots{pointer-events:none}
+.graph-node:has(.node-delete-icon) .drag-dots{display:none}
+.graph-node:has(.node-delete-icon) .node-delete-icon{right:48px;top:11px;width:28px;height:28px;z-index:4}
+.graph-node:has(.node-delete-icon) .node-delete-icon svg{display:block;width:16px;height:16px;flex-shrink:0}
