@@ -140,9 +140,9 @@ test('styles use neutral shades or approved landing purple and graph controls ex
 test('ribbon moves continuously, cursor disruption stays local, headline cycles and motion can stop', () => {
  const vm=require('node:vm'),{createCanvas}=require('@napi-rs/canvas');
  function field(){
-  const canvas=createCanvas(600,400),listeners={},pageListeners={},frames=new Map(),buttonListeners={};let sequence=0,change;
+  const canvas=createCanvas(1000,600),listeners={},pageListeners={},frames=new Map(),buttonListeners={};let sequence=0,change;
   const thought={style:{}},writing={style:{}},toggle={addEventListener:(n,f)=>buttonListeners[n]=f,setAttribute(){}};
-  canvas.getBoundingClientRect=()=>({width:600,height:400,left:0,top:0});
+  canvas.getBoundingClientRect=()=>({width:1000,height:600,left:0,top:0});
   const motion={matches:false,addEventListener:(n,f)=>change=f};
   const hero={querySelector:s=>s==='.starfield'?canvas:s==='.motion-toggle'?toggle:s==='.headline-thought'?thought:writing,addEventListener:(n,f)=>listeners[n]=f};
   const document={hidden:false,querySelector:()=>hero,createElement:()=>createCanvas(40,40),addEventListener:(n,f)=>pageListeners[n]=f};
@@ -150,11 +150,12 @@ test('ribbon moves continuously, cursor disruption stays local, headline cycles 
   return {canvas,listeners,pageListeners,frames,thought,writing,document,motion,change:()=>change(),pause:()=>buttonListeners.click(),advance:time=>{const pending=[...frames.values()];frames.clear();pending.forEach(f=>f(time));}};
  }
  const a=field(),b=field(),before=a.canvas.toBuffer('image/png');
- a.listeners.pointermove({clientX:400,clientY:0,pointerType:'mouse'});
- for(let t=40;t<=400;t+=40){a.advance(t);b.advance(t);}
+ a.listeners.pointermove({clientX:500,clientY:300,pointerType:'mouse'});
+ const initial=b.canvas.toBuffer('image/png');b.advance(16);assert.notDeepEqual(b.canvas.toBuffer('image/png'),initial,'Normal display frames must not be skipped by a 32ms gate');
+ a.advance(16);for(let t=40;t<=400;t+=40){a.advance(t);b.advance(t);}
  assert.notDeepEqual(b.canvas.toBuffer('image/png'),before,'Ambient stars must move without a pointer');
  assert.notDeepEqual(a.canvas.toBuffer('image/png'),b.canvas.toBuffer('image/png'),'Pointer must disrupt the moving field');
- assert.deepEqual(a.canvas.getContext('2d').getImageData(0,0,40,400).data,b.canvas.getContext('2d').getImageData(0,0,40,400).data,'Outside cursor radius matches undisturbed motion');
+ assert.deepEqual(a.canvas.getContext('2d').getImageData(0,0,80,600).data,b.canvas.getContext('2d').getImageData(0,0,80,600).data,'Outside cursor radius matches undisturbed motion');
  for(let t=440;t<=3480;t+=40)b.advance(t);
  assert.equal(b.thought.style.opacity,1,'First phrase holds for 3.5 seconds');
  for(let t=3520;t<=4000;t+=40)b.advance(t);

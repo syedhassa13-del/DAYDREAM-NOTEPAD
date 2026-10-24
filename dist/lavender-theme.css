@@ -53,3 +53,7 @@ body:not(.workspace-active) .site-header .button:hover{background:#bea0e8;color:
 ::highlight(daydream-format-selection){background:#bea0e855;color:#222}
 .format-controls input[type=number]{min-height:38px;font-variant-numeric:tabular-nums}
 .format-controls input[type=number]:focus{outline:2px solid #bea0e8;outline-offset:2px}
+.graph-node .node-delete-icon{position:absolute;right:42px;top:12px;display:grid;place-items:center;width:28px;height:28px;padding:5px;border:0;border-radius:5px;background:transparent;color:#bbb;cursor:pointer}
+.graph-node .node-delete-icon:hover{color:#bea0e8;background:#ffffff0d}
+.graph-node .node-delete-icon:focus-visible{outline:2px solid #bea0e8;outline-offset:2px}
+.graph-node:has(.node-delete-icon) .graph-node-type{max-width:calc(100% - 78px)}

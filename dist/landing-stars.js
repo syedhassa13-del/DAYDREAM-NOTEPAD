@@ -1,10 +1,11 @@
 /* One evolving star field: loose ribbons, gradual capture/release, local cursor warp. */
 (() => {
  const landing=document.querySelector('#landing'),canvas=landing?.querySelector('.starfield');
- if(!canvas)return;const ctx=canvas.getContext('2d');if(!ctx)return;
+ if(!canvas)return;const ctx=canvas.getContext('2d',{alpha:false});if(!ctx)return;
  const motion=matchMedia('(prefers-reduced-motion: reduce)'),toggle=landing.querySelector('.motion-toggle');
  const thought=landing.querySelector('.headline-thought'),writing=landing.querySelector('.headline-writing');
- const sprites=new Map();
+ const driftingStars=new Set();
+ const sprites=new Map(),positionResult={x:0,y:0,g:0,z:0};let opacityA=-1,opacityB=-1;
  const stars=[],pointer={x:0,y:0,active:false};let width=0,height=0,dpr=1,frame=0,last=0,elapsed=0,visible=false,paused=false,seed=41;
  const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
  const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
@@ -21,7 +22,7 @@
  function prepare(){
   const r=canvas.getBoundingClientRect();if(!r.width||!r.height)return;
   width=r.width;height=r.height;dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
-  seed=41;stars.length=0;const count=Math.min(width<760?2200:5700,Math.round(width*height/165));
+  seed=41;stars.length=0;driftingStars.clear();const count=Math.min(width<760?2200:5700,Math.round(width*height/165));
   for(let i=0;i<count;i++){const purple=random()<.2,sparkle=random()<.22;stars.push({u:random(),v:random(),phase:random()*Math.PI*2,band:random()<.5?0:1,depth:random(),r:6+random()*10,image:starSprite(purple,sparkle),dx:0,dy:0,free:random()<.16,visitor:random()<.18});}
   draw(0);start();
  }
@@ -37,20 +38,22 @@
   const ambientX=((star.u+t*.002)%1)*width;
   const ambientY=height*(star.v+.022*Math.sin(t*.11+star.phase));
   const gathering=star.free?0:star.visitor?smooth((Math.sin(t*.13+star.phase)+.5)/1.1):1;
-  return {x:ambientX*(1-gathering)+ribbonX*gathering,y:ambientY*(1-gathering)+ribbonY*gathering,g:gathering,z:fold};
+  positionResult.x=ambientX*(1-gathering)+ribbonX*gathering;positionResult.y=ambientY*(1-gathering)+ribbonY*gathering;positionResult.g=gathering;positionResult.z=fold;return positionResult;
  }
  function headlines(){
   if(!thought?.style||!writing?.style)return;
   const phase=elapsed%10600;
   // 3.5s holds; a 1s overlap has a subtle incoming phrase under the outgoing one.
   let a,b;if(motion.matches){a=1;b=0;}else if(phase<3500){a=1;b=0;}else if(phase<5300){a=1-smooth((phase-3500)/1400);b=smooth((phase-3900)/1400);}else if(phase<8800){a=0;b=1;}else{a=smooth((phase-9200)/1400);b=1-smooth((phase-8800)/1400);}
-  thought.style.opacity=a;writing.style.opacity=b;
+  if(a!==opacityA){thought.style.opacity=a;opacityA=a;}if(b!==opacityB){writing.style.opacity=b;opacityB=b;}
  }
  function draw(dt){
   ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#030303';ctx.fillRect(0,0,width,height);
-  const radius=Math.min(300,width*.44),ease=1-Math.exp(-dt/240);
+  const radius=Math.min(360,width*.54),ease=1-Math.exp(-dt/240);
+  if(!pointer.active)driftingStars.clear();
+  else for(const star of driftingStars){const p=position(star);if(Math.hypot(p.x-pointer.x,p.y-pointer.y)>radius*1.1)driftingStars.delete(star);}
   for(const star of stars){const p=position(star);let tx=0,ty=0;
-   if(pointer.active&&!paused&&!motion.matches){const dx=p.x-pointer.x,dy=p.y-pointer.y,d=Math.hypot(dx,dy);if(d<radius){const f=(1-d/radius)**2,angle=d>.1?Math.atan2(dy,dx):star.phase;tx=(Math.cos(angle)*205-Math.sin(angle)*105)*f;ty=(Math.sin(angle)*205+Math.cos(angle)*105)*f;}}
+   if(pointer.active&&!paused&&!motion.matches){const dx=p.x-pointer.x,dy=p.y-pointer.y,d=Math.hypot(dx,dy);if(d<radius*1.08){const angle=d>.1?Math.atan2(dy,dx):star.phase,t=elapsed*.001;const reach=radius*(1+.035*Math.sin(angle*2+t*.14)+.025*Math.sin(angle*3-t*.1));if(driftingStars.size<3&&d>radius*.4&&d<radius*.85)driftingStars.add(star);const permeability=driftingStars.has(star)?.08:1;const f=Math.max(0,1-d/reach)**2.4*(.82+star.depth*.18)*permeability,bend=angle+.07*Math.sin(star.phase+t*.2);tx=(Math.cos(bend)*135-Math.sin(bend)*63)*f;ty=(Math.sin(bend)*135+Math.cos(bend)*63)*f;}}
    star.dx+=(tx-star.dx)*ease;star.dy+=(ty-star.dy)*ease;
    const x=p.x+star.dx,y=p.y+star.dy;
    // Soft visual clearance behind both fixed headline positions.
@@ -62,7 +65,7 @@
   }
   ctx.globalAlpha=1;headlines();
  }
- function tick(now){frame=0;if(!visible||document.hidden||motion.matches||paused)return;if(now-last<32){frame=requestAnimationFrame(tick);return;}const dt=Math.min(now-last,80);elapsed+=dt;last=now;draw(dt);frame=requestAnimationFrame(tick);}
+ function tick(now){frame=0;if(!visible||document.hidden||motion.matches||paused)return;const dt=Math.min(now-last,80);elapsed+=dt;last=now;draw(dt);frame=requestAnimationFrame(tick);}
  function start(){if(!frame&&visible&&!document.hidden&&!motion.matches&&!paused){last=performance.now();frame=requestAnimationFrame(tick);}}
  function stop(){if(frame)cancelAnimationFrame(frame);frame=0;}
  landing.addEventListener('pointermove',e=>{if(motion.matches||paused||e.pointerType==='touch')return;const r=canvas.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top;pointer.active=true;start();},{passive:true});

@@ -10,7 +10,7 @@ body:not(.workspace-active) .site-header{background:linear-gradient(to bottom,#0
 #landing .headline-thought .thought-line{display:flex;justify-content:space-between;max-width:790px;margin-top:8px}
 #landing .headline-writing{right:4.8%;top:13%;width:73%;text-align:right;color:#bea0e8!important;-webkit-text-fill-color:#bea0e8;opacity:0}
 #landing .headline-writing>span{display:block;white-space:nowrap}
-#landing .headline-writing>span+span{margin-top:7px;padding-right:7.5%}
+#landing .headline-writing>span+span{margin-top:8px;padding-right:7.5%}
 #landing .hero-actions{position:absolute;z-index:3;left:0;right:0;bottom:96px;top:auto;margin:0;width:100%;display:flex;justify-content:center}
 #landing .hero-actions .button.ribbon-cta{display:flex;gap:18px;align-items:center;padding:16px 24px;background:#030303b8;border:1px solid transparent;border-radius:8px;color:#ededed!important;font-family:'Chakra Petch',sans-serif;font-size:clamp(22px,2.3vw,34px);font-weight:400;letter-spacing:0;text-transform:none;line-height:1.3;box-shadow:none;transform:none;backdrop-filter:blur(8px);transition:color .25s,border-color .25s,background .25s}
 #landing .hero-actions .ribbon-cta:hover{color:#bea0e8!important;border-color:#bea0e870;background:#090909e8;transform:none;box-shadow:none}
@@ -23,7 +23,7 @@ body:not(.workspace-active) .site-header{background:linear-gradient(to bottom,#0
  #landing .headline-thought{top:18%;left:6%;width:88%}
  #landing .headline-thought .thought-line{max-width:97%;margin-top:8px}
  #landing .headline-writing{top:18%;right:6%;width:88%}
- #landing .headline-writing>span+span{padding-right:3%;margin-top:12px}
+ #landing .headline-writing>span+span{padding-right:3%;margin-top:8px}
  #landing .hero-actions{bottom:100px}
  #landing .hero-actions .button.ribbon-cta{font-size:23px;padding:15px 16px}
  #landing .motion-toggle{right:14px;bottom:17px}
@@ -39,5 +39,8 @@ body:not(.workspace-active) .site-header :is(.brand-mark,.brand-name,nav a,nav b
 body:not(.workspace-active) .site-header .brand-mark{font-weight:400}
 #landing .dream-hero{height:100svh;min-height:750px}
 #landing .headline-thought{top:25%}
-#landing .headline-writing{top:23%}
+#landing .headline-writing{top:25%}
 @media(max-width:760px){#landing .dream-hero{height:100svh;min-height:640px}#landing .headline-thought,#landing .headline-writing{top:29%}}
+
+/* Both alternating phrases use identical row baselines at every breakpoint. */
+#landing .hero h1>span{will-change:opacity}
